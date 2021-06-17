@@ -3,6 +3,23 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import store from './redux/store';
+import { addTodo } from './redux/actions';
+
+// Store의 상태가 변경되면 실행
+const unsubscribe = store.subscribe(() => {
+  console.log(store.getState());
+});
+
+store.dispatch(addTodo('coding'));
+store.dispatch(addTodo('read book'));
+store.dispatch(addTodo('eat'));
+
+unsubscribe();
+
+store.dispatch(addTodo('coding'));
+store.dispatch(addTodo('read book'));
+store.dispatch(addTodo('eat'));
 
 ReactDOM.render(
   <React.StrictMode>
